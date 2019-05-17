@@ -23,12 +23,11 @@ def twitterconnect():
 
 def main():
     args = parse_args()
-    dry_run = args.dry_run
     api = twitterconnect()
 
     for page in tweepy.Cursor(api.user_timeline).pages():
         for tweet in page:
-            if dry_run:
+            if args.dry_run:
                 print(f"Not deleting : {tweet.text}")
             else:
                 print(f"Deleting : {tweet.text}")
